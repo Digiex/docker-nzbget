@@ -2,6 +2,8 @@
 
 set -ex
 
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
 COMMAND=${IMAGE_NAME}
 for ARCH in amd64 arm32v7 arm64v8; do
   ./docker manifest create \
