@@ -15,4 +15,5 @@ DIR="${ScriptDir}/mp4"
 
 chown abc:abc -R \
   /mp4 \
+  /config \
   "${ScriptDir}"
