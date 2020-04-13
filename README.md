@@ -179,3 +179,11 @@ docker build \
   --pull \
   -t digiex/nzbget:latest .
 ```
+
+## Credits & Useful Links
+
+This project makes use of the following projects:
+- https://github.com/digiex/M4V-Converter
+- https://github.com/linuxserver/docker-nzbget
+
+Enjoy
