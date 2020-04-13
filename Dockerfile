@@ -1,5 +1,5 @@
 FROM digiex/mp4:latest AS base
-FROM linuxserver/nzbget:latest AS release
+FROM linuxserver/nzbget:latest
 MAINTAINER xzKinGzxBuRnzx
 
 RUN \
