@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+[[ -f /config/nzbget.conf ]] && \
+  source /config/nzbget.conf &>/dev/null
+
+[[ -z "${ScriptDir}" ]] || [[ "${ScriptDir}" == "/scripts" ]] && \
+  ScriptDir=/config/scripts
+
+[[ ! -e "${ScriptDir}" ]] && \
+  mkdir -p "${ScriptDir}"
+
+DIR="${ScriptDir}/mp4"
+[[ ! -L "${DIR}" ]] && \
+  ln -s /mp4 "${DIR}"
+
+chown abc:abc -R \
+  /mp4 \
+  "${ScriptDir}"
