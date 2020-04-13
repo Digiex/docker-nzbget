@@ -9,6 +9,8 @@ declare -A BUILD_ARCH=(\
 
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
+docker buildx --help
+
 for ARCH in ${!BUILD_ARCH[@]}; do
   cp ${DOCKERFILE_PATH} ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
   sed -i "/^FROM digiex\/mp4:latest AS base/c\FROM digiex\/mp4:${ARCH}-${DOCKER_TAG} AS base" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
