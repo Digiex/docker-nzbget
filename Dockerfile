@@ -1,4 +1,3 @@
-#FROM digiex/mp4:latest AS base
 FROM linuxserver/nzbget:latest
 MAINTAINER xzKinGzxBuRnzx
 
@@ -7,5 +6,7 @@ RUN \
   sed -i -e "s#\(ScriptDir=\).*#\1/config/scripts#g" \
   /app/nzbget/share/nzbget/nzbget.conf
 
-#COPY --from=base /mp4 /
 COPY root /
+
+FROM digiex/mp4:latest AS build
+COPY --from=build /mp4 /
