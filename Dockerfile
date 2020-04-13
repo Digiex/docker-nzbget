@@ -1,3 +1,4 @@
+FROM digiex/mp4:latest AS base
 FROM linuxserver/nzbget:latest
 MAINTAINER xzKinGzxBuRnzx
 
@@ -7,6 +8,4 @@ RUN \
   /app/nzbget/share/nzbget/nzbget.conf
 
 COPY root /
-
-FROM digiex/mp4:latest AS build
-COPY --from=build /mp4 /
+COPY --from=base /mp4 /
