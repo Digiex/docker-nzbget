@@ -7,13 +7,9 @@ declare -A BUILD_ARCH=(\
 ["arm32v7"]="arm" \
 ["arm64v8"]="aarch64")
 
-export DOCKER_CLI_EXPERIMENTAL=enabled
-
-docker buildx --help
-
 for ARCH in ${!BUILD_ARCH[@]}; do
   cp ${DOCKERFILE_PATH} ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
-  sed -i "/^FROM digiex\/mp4:latest AS base/c\FROM digiex\/mp4:${ARCH}-${DOCKER_TAG} AS base" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
+  #sed -i "/^FROM digiex\/mp4:latest AS base/c\FROM digiex\/mp4:${ARCH}-${DOCKER_TAG} AS base" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
   sed -i "/^FROM linuxserver\/nzbget:latest/c\FROM linuxserver\/nzbget:${ARCH}-${DOCKER_TAG}" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
   [ $(uname -m) != ${BUILD_ARCH[${ARCH}]} ] && \
   sed -i "/^RUN/i COPY qemu-${BUILD_ARCH[${ARCH}]}-static /usr/bin/"  ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
