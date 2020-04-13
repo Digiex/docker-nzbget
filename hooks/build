@@ -9,8 +9,8 @@ declare -A BUILD_ARCH=(\
 
 for ARCH in ${!BUILD_ARCH[@]}; do
   cp ${DOCKERFILE_PATH} ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
+  sed -i "/^FROM digiex\/mp4:latest/c\FROM digiex\/mp4:${ARCH}-${DOCKER_TAG} AS base" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
   sed -i "/^FROM linuxserver\/nzbget:latest/c\FROM linuxserver\/nzbget:${ARCH}-${DOCKER_TAG}" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
-  sed -i "/^FROM digiex\/mp4:latest/c\FROM digiex\/mp4:${DOCKER_TAG} AS base" ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
   [ $(uname -m) != ${BUILD_ARCH[${ARCH}]} ] && \
   sed -i "/^RUN/i COPY qemu-${BUILD_ARCH[${ARCH}]}-static /usr/bin/"  ${DOCKERFILE_PATH}.${BUILD_ARCH[${ARCH}]}
   docker build \
