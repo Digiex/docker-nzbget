@@ -9,8 +9,6 @@
 [[ ! -e "${ScriptDir}" ]] && \
   mkdir -p "${ScriptDir}"
 
-DIR="${ScriptDir}/mp4"
-[[ ! -L "${DIR}" ]] && \
-  ln -s /mp4 "${DIR}"
-
-chown abc:abc -R "${ScriptDir}" /mp4
+cp -R /mp4 "${ScriptDir}"
+chown abc:abc -R "${ScriptDir}"
+chmod +x "${SciptDir}/mp4/mp4.sh"
