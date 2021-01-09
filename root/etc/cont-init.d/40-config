@@ -6,9 +6,8 @@
 [[ -z "${ScriptDir}" ]] && \
   ScriptDir=/downloads/scripts
 
-[[ ! -e "${ScriptDir}" ]] && \
-  mkdir -p "${ScriptDir}"
+mkdir -p "${ScriptDir}"
 
-cp -R /mp4 "${ScriptDir}"
+cp /mp4.sh "${ScriptDir}/"
 chown abc:abc -R "${ScriptDir}"
-chmod +x "${SciptDir}/mp4/mp4.sh"
+chmod +x "${SciptDir}/mp4.sh"
