@@ -2,9 +2,7 @@ FROM digiex/mp4:testing AS base
 FROM linuxserver/nzbget:testing
 MAINTAINER xzKinGzxBuRnzx
 
-RUN \
-  mkdir /mp4 && \
-  apk add --no-cache bash ffmpeg jq bc mediainfo
+RUN apk add --no-cache bash ffmpeg jq
 
 COPY root /
-COPY --from=base /mp4/* /mp4/
+COPY --from=base /mp4.sh /
